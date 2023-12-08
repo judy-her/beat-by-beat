@@ -560,10 +560,6 @@ video {
   top: 0.75rem;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
 .h-20 {
   height: 5rem;
 }
@@ -586,10 +582,6 @@ video {
 
 .max-w-lg {
   max-width: 32rem;
-}
-
-.justify-center {
-  justify-content: center;
 }
 
 .rounded-full {
@@ -655,6 +647,10 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.font-playpen {
+  font-family: Playpen Sans, cursive;
 }
 
 .text-6xl {
