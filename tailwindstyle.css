@@ -540,42 +540,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
-.h-20 {
-  height: 5rem;
-}
-
-.h-\[15px\] {
-  height: 15px;
-}
-
-.h-\[25px\] {
-  height: 25px;
-}
-
-.h-\[35px\] {
-  height: 35px;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
-.w-\[35px\] {
-  width: 35px;
-}
-
-.w-\[55px\] {
-  width: 55px;
-}
-
-.w-\[65px\] {
-  width: 65px;
-}
-
 .w-\[105px\] {
   width: 105px;
 }
@@ -589,34 +553,13 @@ video {
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
 }
 
-.text-\[50px\] {
-  font-size: 50px;
-}
-
-.text-\[20px\] {
-  font-size: 20px;
-}
-
 .text-\[25px\] {
   font-size: 25px;
-}
-
-.font-\[10px\] {
-  font-weight: 10px;
-}
-
-.font-\[50px\] {
-  font-weight: 50px;
 }
 
 .text-blue-500 {
