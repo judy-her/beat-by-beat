@@ -540,6 +540,7 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+
 .absolute {
   position: absolute;
 }
@@ -607,6 +608,23 @@ video {
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-\[25px\] {
+  font-size: 25px;
+}
+
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -648,6 +666,14 @@ video {
 .text-\[25px\] {
   font-size: 25px;
 }
+
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+
 
 .text-blue-500 {
   --tw-text-opacity: 1;
