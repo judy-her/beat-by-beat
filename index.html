@@ -287,22 +287,26 @@
             </svg>
             <input
               type="search"
-              id="spotifySearch"
-              placeholder="Enter Track Name"
+              id="audioDbSearch"
+              placeholder="Enter Artist Name"
               class="border-b-2 w-full border-gray-200 py-3 px-7"
             />
+            <input
+              type="search"
+              id="trackName"
+              placeholder="Enter Track Name"
+              class="border-b-2 w-full border-gray-200 py-3 px-7 mt-4"
+            />
+            <button onclick="searchTrack()" class="mt-4">Search Track</button>
           </div>
+          <div id="results"></div>
+
         </div>
-        <!-- click me btn -->
-        <div>
-          <button class="bg-slate-400 text-white text-[25px] w-45 rounded-full">
-            Click Me
-          </button>
-        </div>
+      </div>
       </div>
     </main>
 
     <!--scripts  -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

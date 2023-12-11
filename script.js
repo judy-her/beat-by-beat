@@ -40,4 +40,40 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+
+
+
+
+
 //Code for API calls to AudioDB
+function constructURL(endpoint, params) {
+  const apiBase = 'https://www.theaudiodb.com/api/v1/json/2/';
+  return `${apiBase}${endpoint}?${new URLSearchParams(params).toString()}`;
+}
+
+function searchTrack() {
+  const artistName = document.getElementById('audioDbSearch').value;
+  const trackName = document.getElementById('trackName').value;
+  const url = constructURL('searchtrack.php', { s: artistName, t: trackName });
+
+  fetchData(url);
+}
+
+//function searchMusicVideos() {
+  //const artistId = document.getElementById('artistId').value;
+  //const url = constructURL('mvid.php', { i: artistId });
+
+  //fetchData(url);
+//}
+
+function fetchData(url) {
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('results').textContent = 'Failed to fetch data';
+      });
+}
