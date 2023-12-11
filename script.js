@@ -39,3 +39,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+
+//Code for API calls to AudioDB
