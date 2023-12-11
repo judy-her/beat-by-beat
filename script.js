@@ -46,34 +46,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //Code for API calls to AudioDB
-function constructURL(endpoint, params) {
-  const apiBase = 'https://www.theaudiodb.com/api/v1/json/2/';
-  return `${apiBase}${endpoint}?${new URLSearchParams(params).toString()}`;
+//Add an event listener to the Search Track button
+document.getElementById("searchButton").addEventListener("click", searchArtist);
+
+//Function to search for an artist
+function searchArtist() {
+  const artistName = document.getElementById("audioDbSearch").value;
+  const apiKey = '523532';
+  
+  //url endpoint from audioDB documentation
+  const apiUrl = `https://www.theaudiodb.com/api/v1/json/${apiKey}/search.php?s=${artistName}`;
+
+  //Make the API request and handle the response
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      displayArtistInfo(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
-function searchTrack() {
-  const artistName = document.getElementById('audioDbSearch').value;
-  const trackName = document.getElementById('trackName').value;
-  const url = constructURL('searchtrack.php', { s: artistName, t: trackName });
+//Function to display artist information
+function displayArtistInfo(data) {
+  console.log(data)
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
 
-  fetchData(url);
-}
+  if (data && data.artists) {
+    //grabs first result
+    const artist = data.artists[0];
 
-//function searchMusicVideos() {
-  //const artistId = document.getElementById('artistId').value;
-  //const url = constructURL('mvid.php', { i: artistId });
-
-  //fetchData(url);
-//}
-
-function fetchData(url) {
-  fetch(url)
-      .then(response => response.json())
-      .then(data => {
-          document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          document.getElementById('results').textContent = 'Failed to fetch data';
-      });
+    // Display the artist's information
+    resultsDiv.innerHTML = `
+      <h2>Artist: ${artist.strArtist}</h2>
+      <p>Genre: ${artist.strGenre}</p>
+      <p>Biography: ${artist.strBiographyEN}</p>
+    `;
+  } else {
+    resultsDiv.innerHTML = "No results found for the artist.";
+  }
 }
