@@ -46,52 +46,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //Code for API calls to AudioDB
-//Add an event listener to the Search Track button
-document.getElementById("searchButton").addEventListener("click", searchArtist);
+// Add an event listener to the Search Track button
+document.getElementById("searchButton").addEventListener("click", searchTrack);
+
 // Add a keydown event listener to the input field
-document.getElementById("audioDbSearch").addEventListener("keydown", function(event) {
+document.getElementById("audioDbSearch").addEventListener("keydown", function (event) {
   // Check if the pressed key is Enter
   if (event.key === "Enter") {
-    searchArtist();
+    searchTrack();
   }
 });
 
-//Function to search for an artist
-function searchArtist() {
+// Function to search for a track
+function searchTrack() {
   const artistName = document.getElementById("audioDbSearch").value;
-  const apiKey = '523532';
-  
-  //url endpoint from audioDB documentation
-  const apiUrl = `https://www.theaudiodb.com/api/v1/json/${apiKey}/search.php?s=${artistName}`;
+  const singleName = document.getElementById("singleNameInput").value; // Add an input field for the track name
+  const apiKey = '523532'; // Replace with your actual API key
 
-  //Make the API request and handle the response
+  // URL endpoint from AudioDB documentation for searching tracks by artist and track name
+  const apiUrl = `https://www.theaudiodb.com/api/v1/json/${apiKey}/searchtrack.php?s=${artistName}&t=${singleName}`;
+
+  // Make the API request and handle the response
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      displayArtistInfo(data);
+      displayTrackInfo(data);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 }
 
-//Function to display artist information
-function displayArtistInfo(data) {
-  console.log(data)
+// Function to display track information
+function displayTrackInfo(data) {
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "";
 
-  if (data && data.artists) {
-    //grabs first result
-    const artist = data.artists[0];
+  if (data && data.track) {
+    const track = data.track[0]; // Assuming you want the first result
 
-    // Display the artist's information
-    resultsDiv.innerHTML = `
-      <h2>Artist: ${artist.strArtist}</h2>
-      <p>Genre: ${artist.strGenre}</p>
-      <p>Biography: ${artist.strBiographyEN}</p>
+    // Create an HTML template with the desired track properties
+    const trackInfoHTML = `
+      <p><strong>Artist:</strong> ${track.strArtist}</p>
+      <p><strong>Track Name:</strong> ${track.strTrack}</p>
+      <p><strong>Genre:</strong> ${track.strGenre}</p>
+      <p><strong>Album:</strong> ${track.strAlbum}</p>
+      <p><strong>Release Date:</strong> ${track.strReleaseDate}</p>
+      <p><strong>Track Description:</strong><br>${track.strDescriptionEN}</p>
     `;
+
+    // Append the HTML to the resultsDiv
+    resultsDiv.innerHTML = trackInfoHTML;
   } else {
-    resultsDiv.innerHTML = "No results found for the artist.";
+    resultsDiv.innerHTML = "No results found for the track.";
   }
 }
+
