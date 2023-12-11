@@ -48,6 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
 //Code for API calls to AudioDB
 //Add an event listener to the Search Track button
 document.getElementById("searchButton").addEventListener("click", searchArtist);
+// Add a keydown event listener to the input field
+document.getElementById("audioDbSearch").addEventListener("keydown", function(event) {
+  // Check if the pressed key is Enter
+  if (event.key === "Enter") {
+    searchArtist();
+  }
+});
 
 //Function to search for an artist
 function searchArtist() {
