@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
 //Code For Api requests from AudioDB and MusicBrainz
 //Add an event listener to the Search Artist button
 document.getElementById("searchButton").addEventListener("click", searchArtist);
@@ -209,4 +207,5 @@ function displayMusicBrainzData(musicBrainzData) {
       mbDataDiv.innerHTML = "No MusicBrainz data available for this artist.";
   }
 }
+
 
