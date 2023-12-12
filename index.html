@@ -278,15 +278,20 @@
             <!--search button for audiodb-->
             <button
               id="searchButton"
-              class="mt-4 bg-gradient text-white text-[20px] pr-2 pl-2 rounded-full"
+              class="mt-4 bg-gradient text-[20px] text-white pr-2 pl-2 rounded-full"
             >
               Search Track
             </button>
           </div>
-          <div id="results">
+          <div id="results" class="font-playpen text-left text-lg">
             <!--Artist info will be displayed here -->
           </div>
         </div>
+        <!--Moved Bio outside of container-->
+        <div
+          id="bio-result"
+          class="w-full bg-blue-300 shadow-xl rounded-xl px-8 py-14 sm:px-12 mt-10 font-playpen text-lg"
+        ></div>
         <!--Moved Videos outside of container-->
         <div id="videos"></div>
       </div>
