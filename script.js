@@ -145,10 +145,16 @@ function displayMusicVideos(musicVideosData) {
               videosDiv.appendChild(videoLink);
 
               // Create an image element for the thumbnail
+              // const thumbnail = document.createElement('img');
+              // thumbnail.src = video.strTrackThumb;
+              // thumbnail.alt = `${video.strTrack} Thumbnail`;
+              // videosDiv.appendChild(thumbnail);
+              
               const thumbnail = document.createElement('img');
               thumbnail.src = video.strTrackThumb;
               thumbnail.alt = `${video.strTrack} Thumbnail`;
-              videosDiv.appendChild(thumbnail);
+              document.getElementById('carouselwrap').appendChild(thumbnail);
+
 
               // Add a line break to separate each video
               videosDiv.appendChild(document.createElement('br'));
