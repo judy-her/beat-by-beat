@@ -245,6 +245,43 @@
         class="h-full w-full relative flex items-center justify-center border border-green-500 rounded bg-gradient-to-br from-blue-400 via-teal-200 to-cyan-300 before:absolute before:inset-0 before:h-full before:bg-gradient-to-br before:from-blue-400 before:via-teal-200 before: to-cobalt-300 before:blur-lg before:translate-x-3 before:translate-y-5"
       > -->
 
+
+    <main class="">
+      <div class="h-96 bg-blue-200">
+          <div class="max-w-lg bg-white shadow-xl rounded-xl px-8 py-14 sm:px-12">
+              <div class="relative">
+                  <svg
+                      class="w-6 h-6 text-gray-700 absolute top-3 left-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                      <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                  </svg>
+                  <!--added id-->
+                  <input
+                      type="search"
+                      id="audioDbSearch"
+                      placeholder="Enter Artist Name"
+                      class="border-b-2 w-full border-gray-200 py-3 px-7"
+                  />
+                  <!--search button for audiodb-->
+                  <button id="searchButton" class="mt-4">Search Track</button>
+              </div>
+              <div id="results">
+                 <!--Artist info will be displayed here -->
+              </div>
+              <div id="videos">
+                <!--Artist info will be displayed here -->
+             </div>
+          </div>
+
     <main class="grid grid-rows-3 gap-12 items-center justify-center">
       <div class="h-96 justify-center mb-5 text-center m-auto">
         <h1 class="row-span-1 text-[35px] font-playpen font-bold text-gradient">
@@ -287,6 +324,7 @@
             <!--Artist info will be displayed here -->
           </div>
         </div>
+
       </div>
       <!-- BIO -->
       <div class="bio-container row-span-1 w-[650px] mt-8">
