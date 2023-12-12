@@ -40,43 +40,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
-
-// Add an event listener to the Search Artist button
+//Code For Api requests from AudioDB and MusicBrainz
+//Add an event listener to the Search Artist button
 document.getElementById("searchButton").addEventListener("click", searchArtist);
 
-// Add a keydown event listener to the input field
+//Add a keydown event listener to the input field
 document.getElementById("audioDbSearch").addEventListener("keydown", function(event) {
-    // Check if the pressed key is Enter
+    //Check if the pressed key is Enter
     if (event.key === "Enter") {
         searchArtist();
     }
 });
 
-// Your API key for theaudiodb.com
+//Your API key for theaudiodb.com
 const apiKey = '523532';
 
-// Function to search for an artist
+//Function to search for an artist
 function searchArtist() {
     const artistName = document.getElementById("audioDbSearch").value;
 
-    // URL endpoint for artist search on theaudiodb.com
+    //URL endpoint for artist search on theaudiodb.com
     const apiUrl = `https://www.theaudiodb.com/api/v1/json/${apiKey}/search.php?s=${artistName}`;
 
-    // Make the API request and handle the response
+    //Make the API request and handle the response
     fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
             displayArtistInfo(data);
             fetchMusicVideos(data);
+            getMusicBrainzData(data);
         })
         .catch((error) => {
             console.error("Error:", error);
         });
 }
 
-// Function to display artist information
+//Function to display artist information
 function displayArtistInfo(data) {
     console.log(data)
     const resultsDiv = document.getElementById("results");
@@ -85,7 +84,7 @@ function displayArtistInfo(data) {
     if (data && data.artists) {
         const artist = data.artists[0];
 
-        // Create an HTML template with the desired properties
+        //Create an HTML template with the desired properties
         const artistInfoHTML = `
             <p><strong>Artist:</strong> ${artist.strArtist}</p>
             <p><strong>Birth Year:</strong> ${artist.intBornYear}</p>
@@ -97,22 +96,22 @@ function displayArtistInfo(data) {
             <p><strong>Biography:</strong><br>${artist.strBiographyEN}</p>
         `;
 
-        // Append the HTML to the resultsDiv
+        //Append the HTML to the resultsDiv
         resultsDiv.innerHTML = artistInfoHTML;
     } else {
         resultsDiv.innerHTML = "No results found for the artist.";
     }
 }
 
-// Function to fetch music videos
+//Function to fetch music videos
 function fetchMusicVideos(data) {
     if (data && data.artists) {
         const artistId = data.artists[0].idArtist;
 
-        // URL endpoint for fetching music videos using the TADB_Artist_ID
+        //URL endpoint for fetching music videos using the TADB_Artist_ID
         const apiUrl = `https://www.theaudiodb.com/api/v1/json/${apiKey}/mvid.php?i=${artistId}`;
 
-        // Make the API request and handle the response
+        //Make the API request and handle the response
         fetch(apiUrl)
             .then((response) => response.json())
             .then((musicVideosData) => {
@@ -124,7 +123,7 @@ function fetchMusicVideos(data) {
     }
 }
 
-// Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
+//Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
 function displayMusicVideos(musicVideosData) {
   console.log(musicVideosData);
   const videosDiv = document.getElementById("videos");
@@ -134,7 +133,7 @@ function displayMusicVideos(musicVideosData) {
       const musicVideos = musicVideosData.mvids;
 
       musicVideos.forEach((video) => {
-          // Extract the YouTube video ID from the URL
+          //Extract the YouTube video ID from the URL
           const videoId = getYouTubeVideoId(video.strMusicVid);
 
           if (videoId) {
@@ -144,13 +143,13 @@ function displayMusicVideos(musicVideosData) {
               videoLink.textContent = `${video.strTrack}`;
               videosDiv.appendChild(videoLink);
 
-              // Create an image element for the thumbnail
+              //Create an image element for the thumbnail
               const thumbnail = document.createElement('img');
               thumbnail.src = video.strTrackThumb;
               thumbnail.alt = `${video.strTrack} Thumbnail`;
               videosDiv.appendChild(thumbnail);
 
-              // Add a line break to separate each video
+              //Add a line break to separate each video
               videosDiv.appendChild(document.createElement('br'));
           }
       });
@@ -160,8 +159,53 @@ function displayMusicVideos(musicVideosData) {
 }
 
 
-// Function to extract YouTube video ID from a URL
+//Function to extract YouTube video ID from a URL
 function getYouTubeVideoId(url) {
   const match = url.match(/(?:v=|\/)([a-zA-Z0-9_-]{11})/);
   return match ? match[1] : null;
 }
+
+
+//Function to grab more Artisit data from Musicbrainz APi by using MBID thats given from the audioDb request in the artist object
+function getMusicBrainzData(data) {
+  if (data && data.artists) {
+      const strMusicBrainzID = data.artists[0].strMusicBrainzID;
+      if (strMusicBrainzID) {
+          const musicBrainzApiUrl = `http://musicbrainz.org/ws/2/artist/${strMusicBrainzID}?fmt=json`;
+
+          fetch(musicBrainzApiUrl)
+              .then((response) => response.json())
+              .then((musicBrainzData) => {
+                  displayMusicBrainzData(musicBrainzData);
+              })
+              .catch((error) => {
+                  console.error("Error fetching from MusicBrainz:", error);
+              });
+      } else {
+          console.error("No MusicBrainz ID found for the artist.");
+      }
+  } else {
+      console.error("No artist data available to retrieve MusicBrainz ID.");
+  }
+}
+
+//Function to display the results in a container ID mb Results
+function displayMusicBrainzData(musicBrainzData) {
+  console.log(musicBrainzData)
+  const mbDataDiv = document.getElementById("mbResults");
+  mbDataDiv.innerHTML = ""; // Clear previous results
+
+  if (musicBrainzData) {
+      const mbDataHTML = `
+          <p><strong>Birth Area:</strong> ${musicBrainzData['begin-area'].name}</p>
+          <p><strong>Life Span:</strong> ${musicBrainzData['life-span'].begin} to ${musicBrainzData['life-span'].end || 'present'}</p>
+      `;
+
+      //Append the HTML to the mbDataDiv
+      mbDataDiv.innerHTML = mbDataHTML;
+  } else {
+      mbDataDiv.innerHTML = "No MusicBrainz data available for this artist.";
+  }
+}
+
+
