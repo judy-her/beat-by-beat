@@ -126,53 +126,46 @@ function fetchMusicVideos(data) {
 
 //Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
 function displayMusicVideos(musicVideosData) {
-  console.log(musicVideosData);
-  const videosDiv = document.getElementById("videos");
-  videosDiv.innerHTML = "";
+    console.log(musicVideosData);
+    const videosDiv = document.getElementById("videos");
+    videosDiv.innerHTML = "";
 
-  //Set the maximum number of videos to display
-  const maxVideosToShow = 6; 
+    const maxVideosToShow = 6; 
 
-  if (musicVideosData.mvids) {
-      const musicVideos = musicVideosData.mvids;
-      console.log(musicVideos)
+    if (musicVideosData.mvids) {
+        const musicVideos = musicVideosData.mvids;
 
-      let videosDisplayed = 0; //Counter for the number of videos displayed
+        for (let i = 0; i < maxVideosToShow && i < musicVideos.length; i++) {
+            const video = musicVideos[i];
+            //Extract the YouTube video ID from the URL
+            const videoId = getYouTubeVideoId(video.strMusicVid);
 
-      musicVideos.forEach((video) => {
-          //Extract the YouTube video ID from the URL
-          const videoId = getYouTubeVideoId(video.strMusicVid);
-
-          //Check if a thumbnail is available and the maximum number of videos hasn't been displayed yet
-          if (videoId && video.strTrackThumb && videosDisplayed < maxVideosToShow) {
-              const videoLink = document.createElement('a');
-              videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
-              videoLink.target = "_blank"; // Open the link in a new tab
-              videoLink.textContent = `${video.strTrack}`;
-              videosDiv.appendChild(videoLink);
-              
-              //Create an image element for the thumbnail
-              const slide = document.createElement('div');
+            //Check if a thumbnail is available
+            if (videoId && video.strTrackThumb) {
+              // Create div to hold slides with class styling added
+              const slide = document.createElement('div')
               slide.classList.add('slide');
               document.getElementById('slide-track').appendChild(slide);
 
-              const thumbnail = document.createElement('img');
-              thumbnail.src = video.strTrackThumb;
-              thumbnail.alt = `${video.strTrack} Thumbnail`;
-              slide.appendChild(thumbnail);
+                //Create an anchor element for the thumbnail
+                const thumbnailLink = document.createElement('a');
+                thumbnailLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+                thumbnailLink.target = "_blank"; // Open the link in a new tab
 
-              videosDiv.appendChild(document.createElement('br'));
+                //Create an image element for the thumbnail and add to slide div
+                const thumbnail = document.createElement('img');
+                thumbnail.src = video.strTrackThumb;
+                thumbnail.alt = `${video.strTrack} Thumbnail`;
+                
+                // append link in slide div, append image to anchor tag
+                slide.appendChild(thumbnailLink)
+                thumbnailLink.appendChild(thumbnail)
 
-              videosDisplayed++; 
-          }
-
-          if (videosDisplayed >= maxVideosToShow) {
-              return;
-          }
-      });
-  } else {
-      console.log('No music videos found for this artist.');
-  }
+            }
+        }
+    } else {
+        console.log('No music videos found for this artist.');
+    }
 }
 
 
