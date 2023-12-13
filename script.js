@@ -123,39 +123,39 @@ function fetchMusicVideos(data) {
     }
 }
 
-//Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
+// Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
 function displayMusicVideos(musicVideosData) {
-  console.log(musicVideosData);
-  const videosDiv = document.getElementById("videos");
-  videosDiv.innerHTML = "";
+    console.log(musicVideosData);
+    const videosDiv = document.getElementById("videos");
+    videosDiv.innerHTML = "";
 
-  if (musicVideosData.mvids) {
-      const musicVideos = musicVideosData.mvids;
+    if (musicVideosData.mvids) {
+        const musicVideos = musicVideosData.mvids;
 
-      musicVideos.forEach((video) => {
-          //Extract the YouTube video ID from the URL
-          const videoId = getYouTubeVideoId(video.strMusicVid);
+        musicVideos.forEach((video) => {
+            //Extract the YouTube video ID from the URL
+            const videoId = getYouTubeVideoId(video.strMusicVid);
 
-          if (videoId) {
-              const videoLink = document.createElement('a');
-              videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
-              videoLink.target = "_blank"; // Open the link in a new tab
-              videoLink.textContent = `${video.strTrack}`;
-              videosDiv.appendChild(videoLink);
+            //Check if a thumbnail is available to prevent missing when displayed 
+            if (videoId && video.strTrackThumb) {
+                const videoLink = document.createElement('a');
+                videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+                videoLink.target = "_blank"; // Open the link in a new tab
+                videoLink.textContent = `${video.strTrack}`;
+                videosDiv.appendChild(videoLink);
 
-              //Create an image element for the thumbnail
-              const thumbnail = document.createElement('img');
-              thumbnail.src = video.strTrackThumb;
-              thumbnail.alt = `${video.strTrack} Thumbnail`;
-              videosDiv.appendChild(thumbnail);
+                //Create an image element for the thumbnail
+                const thumbnail = document.createElement('img');
+                thumbnail.src = video.strTrackThumb;
+                thumbnail.alt = `${video.strTrack} Thumbnail`;
+                videosDiv.appendChild(thumbnail);
 
-              //Add a line break to separate each video
-              videosDiv.appendChild(document.createElement('br'));
-          }
-      });
-  } else {
-      console.log('No music videos found for this artist.');
-  }
+                videosDiv.appendChild(document.createElement('br'));
+            }
+        });
+    } else {
+        console.log('No music videos found for this artist.');
+    }
 }
 
 
