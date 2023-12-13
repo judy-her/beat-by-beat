@@ -142,22 +142,25 @@ function displayMusicVideos(musicVideosData) {
 
             //Check if a thumbnail is available
             if (videoId && video.strTrackThumb) {
+              // Create div to hold slides with class styling added
+              const slide = document.createElement('div')
+              slide.classList.add('slide');
+              document.getElementById('slide-track').appendChild(slide);
+
                 //Create an anchor element for the thumbnail
                 const thumbnailLink = document.createElement('a');
                 thumbnailLink.href = `https://www.youtube.com/watch?v=${videoId}`;
                 thumbnailLink.target = "_blank"; // Open the link in a new tab
 
-                //Create an image element for the thumbnail
+                //Create an image element for the thumbnail and add to slide div
                 const thumbnail = document.createElement('img');
                 thumbnail.src = video.strTrackThumb;
                 thumbnail.alt = `${video.strTrack} Thumbnail`;
+                
+                // append link in slide div, append image to anchor tag
+                slide.appendChild(thumbnailLink)
+                thumbnailLink.appendChild(thumbnail)
 
-                //Append the thumbnail to the anchor tag
-                thumbnailLink.appendChild(thumbnail);
-
-                videosDiv.appendChild(thumbnailLink);
-
-                videosDiv.appendChild(document.createElement('br'));
             }
         }
     } else {
