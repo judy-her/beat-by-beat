@@ -129,8 +129,9 @@ function displayMusicVideos(musicVideosData) {
     console.log(musicVideosData);
     const videosDiv = document.getElementById("videos");
     videosDiv.innerHTML = "";
+    document.getElementById('slide-track').innerHTML = "";
 
-    const maxVideosToShow = 6; 
+    const maxVideosToShow = 50; 
 
     if (musicVideosData.mvids) {
         const musicVideos = musicVideosData.mvids;
@@ -161,8 +162,12 @@ function displayMusicVideos(musicVideosData) {
                 slide.appendChild(thumbnailLink)
                 thumbnailLink.appendChild(thumbnail)
 
+
             }
         }
+        // copy albums to create infinite loop effect
+        var copy = document.querySelector('.slide-track').copyNode(true);
+        document.querySelector('.slider').appendChild(copy);
     } else {
         console.log('No music videos found for this artist.');
     }
