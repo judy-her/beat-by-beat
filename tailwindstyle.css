@@ -1502,3 +1502,41 @@ video {
     height: 24rem;
   }
 }
+
+/* for carousel */
+#slider {
+  height: 400px;
+  margin: auto;
+  position: relative;
+  width: 90%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+#slide-track {
+  display:flex;
+  width: calc(400px * 6);
+  animation: scroll 40% linear infinite;
+}
+
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-400px * 6));
+  }
+}
+
+.slide {
+  height: 200px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.slide img {
+  width: 100%;
+}

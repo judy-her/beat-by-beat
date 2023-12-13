@@ -146,15 +146,18 @@ function displayMusicVideos(musicVideosData) {
               videosDiv.appendChild(videoLink);
               
               //Create an image element for the thumbnail
+              const slide = document.createElement('div');
+              slide.classList.add('slide');
+              document.getElementById('slide-track').appendChild(slide);
+
               const thumbnail = document.createElement('img');
-              thumbnail.classList.add('slide')
               thumbnail.src = video.strTrackThumb;
               thumbnail.alt = `${video.strTrack} Thumbnail`;
-              document.getElementById('videos').appendChild(thumbnail);
+              slide.appendChild(thumbnail);
 
 
               //Add a line break to separate each video
-              videosDiv.appendChild(document.createElement('br'));
+              // videosDiv.appendChild(document.createElement('br'));
           }
       });
   } else {
