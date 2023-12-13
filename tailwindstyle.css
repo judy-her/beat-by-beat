@@ -1514,11 +1514,11 @@ video {
   overflow: hidden;
 }
 
-#slide-track {
+ #slide-track {
   display:flex;
-  width: calc(400px * 6);
-  animation: scroll 40% linear infinite;
-}
+  /* width: calc(400px * 6); */
+  animation:scroll 40% linear infinite;
+} 
 
 @keyframes scroll {
   0%{
@@ -1539,4 +1539,4 @@ video {
 
 .slide img {
   width: 100%;
-}
+} */
