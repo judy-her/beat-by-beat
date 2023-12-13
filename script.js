@@ -130,15 +130,21 @@ function displayMusicVideos(musicVideosData) {
   const videosDiv = document.getElementById("videos");
   videosDiv.innerHTML = "";
 
+  //Set the maximum number of videos to display
+  const maxVideosToShow = 6; 
+
   if (musicVideosData.mvids) {
       const musicVideos = musicVideosData.mvids;
       console.log(musicVideos)
+
+      let videosDisplayed = 0; //Counter for the number of videos displayed
 
       musicVideos.forEach((video) => {
           //Extract the YouTube video ID from the URL
           const videoId = getYouTubeVideoId(video.strMusicVid);
 
-          if (videoId) {
+          //Check if a thumbnail is available and the maximum number of videos hasn't been displayed yet
+          if (videoId && video.strTrackThumb && videosDisplayed < maxVideosToShow) {
               const videoLink = document.createElement('a');
               videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
               videoLink.target = "_blank"; // Open the link in a new tab
@@ -155,15 +161,20 @@ function displayMusicVideos(musicVideosData) {
               thumbnail.alt = `${video.strTrack} Thumbnail`;
               slide.appendChild(thumbnail);
 
+              videosDiv.appendChild(document.createElement('br'));
 
-              //Add a line break to separate each video
-              // videosDiv.appendChild(document.createElement('br'));
+              videosDisplayed++; 
+          }
+
+          if (videosDisplayed >= maxVideosToShow) {
+              return;
           }
       });
   } else {
       console.log('No music videos found for this artist.');
   }
 }
+
 
 
 //Function to extract YouTube video ID from a URL

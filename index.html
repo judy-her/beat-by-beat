@@ -248,12 +248,17 @@
     <main class="grid grid-rows-3 gap-12 items-center justify-center">
       <div class="h-96 justify-center mb-5 text-center m-auto">
         <h1 class="row-span-1 text-[35px] font-playpen font-bold text-gradient">
-          Best Music App
+          Beat by Beat
+          <h2 class="row-span-1 text-[25px] font-playpen font-bold text-gradient">The Ultimate Music Encyclopedia</h2>
         </h1>
         <div
-          class="row-span-1 w-full bg-gradient-to-r from-slate-50 via-sky-200 to-violet-300 shadow-xl rounded-xl px-8 py-14 sm:px-12 mt-10"
+
+          class="row-span-1 w-full shadow-xl rounded-xl px-8 py-14 sm:px-12 mt-10 bg-gradient-to-r from-slate-50 via-sky-200 to-violet-300 "
+
+          class="row-span-1 w-full bg-blue-300 shadow-xl rounded-xl px-8 py-14 sm:px-12 mt-10"
+
         >
-          <div class="relative group cursor-pointer">
+          <div class="relative">
             <svg
               class="w-6 h-6 text-gray-700 absolute top-3 left-0"
               fill="none"
@@ -273,10 +278,8 @@
               type="search"
               id="audioDbSearch"
               placeholder="Enter Artist Name"
-              class="p-3 w-full border-4 border-indigo-500 py-3 px-7 rounded-full focus:outline-none "
-              
+              class="border-b-2 w-full border-gray-200 py-3 px-7"
             />
-            
             <!--search button for audiodb-->
             <button
               id="searchButton"
@@ -285,7 +288,7 @@
               Search Track
             </button>
           </div>
-          <div id="results" class="font-playpen text-left text-lg ">
+          <div id="results" class="font-playpen text-left text-lg">
             <!--Artist info will be displayed here -->
           </div>
           <div id="mbResults"></div>
