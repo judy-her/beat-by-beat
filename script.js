@@ -128,7 +128,7 @@ function fetchMusicVideos(data) {
 function displayMusicVideos(musicVideosData) {
   console.log(musicVideosData);
   const videosDiv = document.getElementById("videos");
-  // videosDiv.innerHTML = "";
+  videosDiv.innerHTML = "";
 
   if (musicVideosData.mvids) {
       const musicVideos = musicVideosData.mvids;
@@ -147,10 +147,10 @@ function displayMusicVideos(musicVideosData) {
               
               //Create an image element for the thumbnail
               const thumbnail = document.createElement('img');
+              thumbnail.classList.add('slide')
               thumbnail.src = video.strTrackThumb;
               thumbnail.alt = `${video.strTrack} Thumbnail`;
-              thumbnail.className = "absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
-              document.getElementById('carouselWrap').appendChild(thumbnail);
+              document.getElementById('videos').appendChild(thumbnail);
 
 
               //Add a line break to separate each video
