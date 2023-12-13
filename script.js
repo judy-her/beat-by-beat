@@ -123,6 +123,7 @@ function fetchMusicVideos(data) {
     }
 }
 
+
 //Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
 function displayMusicVideos(musicVideosData) {
   console.log(musicVideosData);
@@ -134,6 +135,7 @@ function displayMusicVideos(musicVideosData) {
 
   if (musicVideosData.mvids) {
       const musicVideos = musicVideosData.mvids;
+      console.log(musicVideos)
 
       let videosDisplayed = 0; //Counter for the number of videos displayed
 
@@ -148,12 +150,16 @@ function displayMusicVideos(musicVideosData) {
               videoLink.target = "_blank"; // Open the link in a new tab
               videoLink.textContent = `${video.strTrack}`;
               videosDiv.appendChild(videoLink);
-
+              
               //Create an image element for the thumbnail
+              const slide = document.createElement('div');
+              slide.classList.add('slide');
+              document.getElementById('slide-track').appendChild(slide);
+
               const thumbnail = document.createElement('img');
               thumbnail.src = video.strTrackThumb;
               thumbnail.alt = `${video.strTrack} Thumbnail`;
-              videosDiv.appendChild(thumbnail);
+              slide.appendChild(thumbnail);
 
               videosDiv.appendChild(document.createElement('br'));
 
@@ -219,5 +225,4 @@ function displayMusicBrainzData(musicBrainzData) {
       mbDataDiv.innerHTML = "No MusicBrainz data available for this artist.";
   }
 }
-
 
