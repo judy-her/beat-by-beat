@@ -123,40 +123,52 @@ function fetchMusicVideos(data) {
     }
 }
 
-// Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
+//Function to display music videos as links with each title on a new line, along with the corresponding thumbnail
 function displayMusicVideos(musicVideosData) {
-    console.log(musicVideosData);
-    const videosDiv = document.getElementById("videos");
-    videosDiv.innerHTML = "";
+  console.log(musicVideosData);
+  const videosDiv = document.getElementById("videos");
+  videosDiv.innerHTML = "";
 
-    if (musicVideosData.mvids) {
-        const musicVideos = musicVideosData.mvids;
+  //Set the maximum number of videos to display
+  const maxVideosToShow = 6; 
 
-        musicVideos.forEach((video) => {
-            //Extract the YouTube video ID from the URL
-            const videoId = getYouTubeVideoId(video.strMusicVid);
+  if (musicVideosData.mvids) {
+      const musicVideos = musicVideosData.mvids;
 
-            //Check if a thumbnail is available to prevent missing when displayed 
-            if (videoId && video.strTrackThumb) {
-                const videoLink = document.createElement('a');
-                videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
-                videoLink.target = "_blank"; // Open the link in a new tab
-                videoLink.textContent = `${video.strTrack}`;
-                videosDiv.appendChild(videoLink);
+      let videosDisplayed = 0; //Counter for the number of videos displayed
 
-                //Create an image element for the thumbnail
-                const thumbnail = document.createElement('img');
-                thumbnail.src = video.strTrackThumb;
-                thumbnail.alt = `${video.strTrack} Thumbnail`;
-                videosDiv.appendChild(thumbnail);
+      musicVideos.forEach((video) => {
+          //Extract the YouTube video ID from the URL
+          const videoId = getYouTubeVideoId(video.strMusicVid);
 
-                videosDiv.appendChild(document.createElement('br'));
-            }
-        });
-    } else {
-        console.log('No music videos found for this artist.');
-    }
+          //Check if a thumbnail is available and the maximum number of videos hasn't been displayed yet
+          if (videoId && video.strTrackThumb && videosDisplayed < maxVideosToShow) {
+              const videoLink = document.createElement('a');
+              videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+              videoLink.target = "_blank"; // Open the link in a new tab
+              videoLink.textContent = `${video.strTrack}`;
+              videosDiv.appendChild(videoLink);
+
+              //Create an image element for the thumbnail
+              const thumbnail = document.createElement('img');
+              thumbnail.src = video.strTrackThumb;
+              thumbnail.alt = `${video.strTrack} Thumbnail`;
+              videosDiv.appendChild(thumbnail);
+
+              videosDiv.appendChild(document.createElement('br'));
+
+              videosDisplayed++; 
+          }
+
+          if (videosDisplayed >= maxVideosToShow) {
+              return;
+          }
+      });
+  } else {
+      console.log('No music videos found for this artist.');
+  }
 }
+
 
 
 //Function to extract YouTube video ID from a URL
