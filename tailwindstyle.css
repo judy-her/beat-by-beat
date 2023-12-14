@@ -1245,3 +1245,54 @@ video {
     margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
+
+
+@media (min-width: 1280px) {
+  .xl\:h-80 {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:h-96 {
+    height: 24rem;
+  }
+}
+
+/* for carousel */
+#slider {
+  height: 400px;
+  margin: auto;
+  position: relative;
+  width: 90%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+ #slide-track {
+  display:flex;
+  /* width: calc(400px * 6); */
+  animation:scroll 40% linear infinite;
+} 
+
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-400px * 6));
+  }
+}
+
+.slide {
+  height: 200px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.slide img {
+  width: 100%;
+} 
