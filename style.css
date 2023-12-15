@@ -9,20 +9,6 @@
   .text-gradient {
     @apply font-playpen text-center bg-gradient-to-b from-yellow-50 to-blue-600 bg-clip-text text-transparent;
   }
-  <footer>
-    <div class="footer container"></div>
-      <div class="social icons>"> </div>
-      <a href="fa-brands fa-facebook"><i></i></a>
-      <a href="fa-brands fa-Instagram"><i></i></a>
-      <a href="fa-brands fa-Twitter"><i></i></a>
-      <a href="fa-brands fa-Gmail"><i></i></a>
-<div class="footer nav">
-  <ul>
-    <li><a href="">Home</a></li>
-    <li><a href="">News</a></li>
-    <li><a href="">Contact us</a></li>
-    <li><a href="">Team</a></li>
-  
 
   </ul>
   <div class="footer bottom">
