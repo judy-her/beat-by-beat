@@ -21,14 +21,14 @@ Introducing Beat by Beat, a web application that merges music discovery and vide
 Simply navigate to [](https://judy-her.github.io/super-team-project/) from your web browser and enter the artist's name in the search bar and submit. 
 
 ## Preview
-![](public/images/preview.jpeg)
+![Preview](Public/images/preview.jpeg)
 
 ## Credits
 Our team brought together diverse skills to make this project a reality:
 - Judy (https://github.com/judy-her): Focused on implementing the responsive design using Tailwind CSS.
 - Manya (https://github.com/manyanara): Created the carousel feature for dynamically displaying music video thumbnails.
 - Robert (https://github.com/robertsolorzano): Led the JavaScript development for API integration, connecting with AudioDB, YouTube, and Musicbrainz.
-- Brian: 
+- Brian (https://github.com/bswagy): 
 
 Tutorials used:
 - Tailwind CSS Tutorial by Net Ninja: [](https://www.youtube.com/watch?v=bxmDnn7lrnk)
