@@ -1295,8 +1295,8 @@ video {
 }
 
 .slide img {
-
   height: 100%;
+  width:100%
 } 
 
 /* 
@@ -1325,6 +1325,4 @@ adding gradient to carousel and hover effect */
   content: "";
   z-index: 2;
 }
-  width: 100%;
-} 
 
