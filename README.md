@@ -21,7 +21,7 @@ Introducing Beat by Beat, a web application that merges music discovery and vide
 Simply navigate to [](https://judy-her.github.io/super-team-project/) from your web browser and enter the artist's name in the search bar and submit. 
 
 ## Preview
-![](public/images/preview.jpeg)
+![Preview Image](Public/images/preview.jpeg)
 
 ## Credits
 Our team brought together diverse skills to make this project a reality:
