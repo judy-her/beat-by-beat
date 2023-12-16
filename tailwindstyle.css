@@ -1346,3 +1346,81 @@ footer {
     margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
+@media (min-width: 1280px) {
+  .xl\:h-80 {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:h-96 {
+    height: 24rem;
+  }
+}
+
+/* for carousel */
+#slider {
+  height: 400px;
+  margin: auto;
+  position: relative;
+  width: 90%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+ #slide-track {
+  display:flex;
+  white-space: nowrap;
+  width: calc(400px * 50);
+  animation: scroll 75s 0.5s linear infinite;
+} 
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-400px * 10));
+  }
+}
+
+.slide {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.slide img {
+  height: 100%;
+  width:100%
+} 
+
+/* 
+adding gradient to carousel and hover effect */
+.slider:hover .slide-track {
+  animation-play-state: paused;
+}
+
+.slider:after {
+  position: absolute;
+  top:0;
+  right: 0;
+  width:250px;
+  height:100%;
+  background: linear-gradient(to right, (255, 255, 255, 0), red);
+  content: "";
+  z-index: 2;
+} 
+.slider:before {
+  position: absolute;
+  top:0;
+  left: 0;
+  width:250px;
+  height:100%;
+  background: linear-gradient(to left, (255, 255, 255, 0), red);
+  content: "";
+  z-index: 2;
+}
