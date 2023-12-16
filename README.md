@@ -18,7 +18,7 @@ Introducing Beat by Beat, a web application that merges music discovery and vide
 4. Start the application: `npm run build`
 
 ## Usage
-Simply navigate to [](https://judy-her.github.io/super-team-project/) from your web browser and enter the artist's name in the search bar and submit. 
+Simply navigate to [Beat By Beat](https://judy-her.github.io/super-team-project/) from your web browser and enter the artist's name in the search bar and submit. 
 
 ## Preview
 ![Preview](Public/images/preview.jpeg)
