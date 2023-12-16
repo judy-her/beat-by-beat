@@ -1379,7 +1379,22 @@ footer {
   }
 }
 
+
 /* carousel */
+
+@media (min-width: 1280px) {
+  .xl\:h-80 {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:h-96 {
+    height: 24rem;
+  }
+}
+
+
 /* for carousel */
 #slider {
   height: 400px;
@@ -1391,12 +1406,21 @@ footer {
   overflow: hidden;
 }
 
+
 #slide-track {
   display: flex;
   white-space: nowrap;
   width: calc(400px * 50);
   animation: scroll 75s 0.5s linear infinite;
 }
+
+ #slide-track {
+  display:flex;
+  white-space: nowrap;
+  width: calc(400px * 50);
+  animation: scroll 75s 0.5s linear infinite;
+} 
+
 
 @keyframes scroll {
   from {
@@ -1420,6 +1444,9 @@ footer {
   width: 100%;
 }
 
+
+
+
 /* 
 adding gradient to carousel and hover effect */
 .slider:hover .slide-track {
@@ -1428,6 +1455,7 @@ adding gradient to carousel and hover effect */
 
 .slider:after {
   position: absolute;
+
   top: 0;
   right: 0;
   width: 250px;
@@ -1444,5 +1472,23 @@ adding gradient to carousel and hover effect */
   height: 100%;
   background: linear-gradient(to left, (255, 255, 255, 0), red);
   content: '';
+
+  top:0;
+  right: 0;
+  width:250px;
+  height:100%;
+  background: linear-gradient(to right, (255, 255, 255, 0), red);
+  content: "";
+  z-index: 2;
+} 
+.slider:before {
+  position: absolute;
+  top:0;
+  left: 0;
+  width:250px;
+  height:100%;
+  background: linear-gradient(to left, (255, 255, 255, 0), red);
+  content: "";
+
   z-index: 2;
 }
