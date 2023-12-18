@@ -9,6 +9,7 @@
   .text-gradient {
     @apply font-playpen text-center bg-gradient-to-b from-yellow-50 to-blue-600 bg-clip-text text-transparent;
   }
+
   .nav-text {
     @apply text-lg nav-text-gradient hover:text-sky-300;
   }
@@ -16,6 +17,7 @@
     @apply font-playpen bg-gradient-to-b from-sky-100 via-sky-200 to-violet-900 bg-clip-text text-transparent;
   }
 }
+
 
 /* DO  NOT TOUCH ABOVE CODE */
 
