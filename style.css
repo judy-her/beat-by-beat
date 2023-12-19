@@ -16,8 +16,10 @@
   .nav-text-gradient {
     @apply font-playpen bg-gradient-to-b from-sky-100 via-sky-200 to-violet-900 bg-clip-text text-transparent;
   }
+  .hamburger-menu-text-and-bg {
+    @apply p-4 text-lg font-playpen text-purple-800 hover:bg-gradient hover:text-blue-600 rounded;
+  }
 }
-
 
 /* DO  NOT TOUCH ABOVE CODE */
 
