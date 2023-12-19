@@ -187,7 +187,7 @@ function getMusicBrainzData(data) {
   if (data && data.artists) {
       const strMusicBrainzID = data.artists[0].strMusicBrainzID;
       if (strMusicBrainzID) {
-          const musicBrainzApiUrl = `http://musicbrainz.org/ws/2/artist/${strMusicBrainzID}?fmt=json`;
+          const musicBrainzApiUrl = `https://musicbrainz.org/ws/2/artist/${strMusicBrainzID}?fmt=json`;
 
           fetch(musicBrainzApiUrl)
               .then((response) => response.json())
